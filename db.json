@@ -1,0 +1,387 @@
+{
+  "employees": [
+    {
+      "id": "fbde",
+      "employee": {
+        "id": "fbde",
+        "name": "SASHANK REDDY KETHAMREDDY",
+        "email": "sashank@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "4567890123",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      }
+    },
+    {
+      "id": "fedf",
+      "employee": {
+        "id": "3464",
+        "name": "Sashank Reddy",
+        "email": "s26900689@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "4567890123",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746177676183",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "d61a",
+      "employee": {
+        "id": "432",
+        "name": "Sashank Reddy",
+        "email": "sai.kethamreddy666@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "7665231232",
+        "gender": "female",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746177810204",
+          "street": "Vinayaka Street",
+          "city": "Rayachoty",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        }
+      ]
+    },
+    {
+      "id": "0181",
+      "employee": {
+        "id": "438932483894",
+        "name": "bhjsbvdj",
+        "email": "sashank.kethamreddy@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "7665231232",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746177810204",
+          "street": "Vinayaka Street",
+          "city": "Rayachoty",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        },
+        {
+          "id": "1746177846114",
+          "street": "Vinayaka Street",
+          "city": "Rayachoty",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        }
+      ]
+    },
+    {
+      "id": "a4c8",
+      "employee": {
+        "id": "4534232",
+        "name": "dfgsf",
+        "email": "sashank@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "9182185399",
+        "gender": "female",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746177810204",
+          "street": "Vinayaka Street",
+          "city": "Rayachoty",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        },
+        {
+          "id": "1746177846114",
+          "street": "Vinayaka Street",
+          "city": "Rayachoty",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        },
+        {
+          "id": "1746177882935",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "b469",
+      "employee": {
+        "id": "543094309",
+        "name": "vjdfjkf",
+        "email": "sashank.kethamreddy@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "4567890123",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746177936246",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "c8f3",
+      "employee": {
+        "id": "64543",
+        "name": "Sashank Reddy",
+        "email": "sashank.kethamreddy@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "4567890123",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746178997277",
+          "street": "Vinayaka Street",
+          "city": "Rayachoti",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        }
+      ]
+    },
+    {
+      "id": "9154",
+      "employee": {
+        "id": "4567890",
+        "name": "sdfdfs",
+        "email": "sai.kethamreddy666@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "1234567890",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746179026733",
+          "street": "Vinayaka Street",
+          "city": "Rayachoty",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        }
+      ]
+    },
+    {
+      "id": "0621",
+      "employee": {
+        "id": "12345",
+        "name": "rakesh",
+        "email": "sai.kethamreddy666@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "7665231232",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746179090994",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "e815",
+      "employee": {
+        "id": "64543",
+        "name": "malay",
+        "email": "sai.kethamreddy666@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "4567890123",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746179272800",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "4742",
+      "employee": {
+        "id": "64543",
+        "name": "SASHANK REDDY KETHAMREDDY",
+        "email": "s26900689@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "9876543212",
+        "gender": "male",
+        "company": "RINL VISAKHAPATNAM STEEL PLANT"
+      },
+      "address": [
+        {
+          "id": "1746179667105",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "c3a6",
+      "employee": {
+        "id": "4635642",
+        "name": "Sashank Reddy",
+        "email": "sashank.kethamreddy@gmail.com",
+        "organization": "product",
+        "number": "4567890123",
+        "gender": "male",
+        "company": "4i apps"
+      },
+      "address": [
+        {
+          "id": "1746180759859",
+          "street": "Vinayaka Street",
+          "city": "Rayachoti",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        },
+        {
+          "id": "1746180766160",
+          "street": "Vinayaka Street",
+          "city": "Rayachoti",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        }
+      ]
+    },
+    {
+      "id": "e2e6",
+      "employee": {
+        "id": "64543",
+        "name": "ramu",
+        "email": "sashank@gmail.com",
+        "organization": "RINL VISAKHAPATNAM STEEL PLANT",
+        "number": "7665231232",
+        "gender": "male",
+        "company": "4i apps"
+      },
+      "address": [
+        {
+          "id": "1746181204240",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "7db2",
+      "employee": {
+        "id": "3464",
+        "name": "sashank",
+        "email": "sashank@gmail.com",
+        "organization": "dedwsd",
+        "number": "9548523451",
+        "gender": "male",
+        "company": "4i apps"
+      },
+      "address": [
+        {
+          "id": "1746182577223",
+          "street": "Vinayaka Street",
+          "city": "Rayachoti",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        },
+        {
+          "id": "1746182585475",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
+    },
+    {
+      "id": "c73b",
+      "employee": {
+        "id": "13434",
+        "name": "ramesh",
+        "email": "sai.kethamreddy666@gmail.com",
+        "organization": "product",
+        "number": "1234567890",
+        "gender": "male",
+        "company": "4i apps"
+      },
+      "address": [
+        {
+          "id": "1746195723503",
+          "street": "Vinayaka Street",
+          "city": "Rayachoti",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        },
+        {
+          "id": "1746195730651",
+          "street": "vellore institute of technology chennai",
+          "city": "chennai",
+          "state": "Andhra Pradesh",
+          "zip": "600127"
+        }
+      ]
+    },
+    {
+      "id": "f32b",
+      "employee": {
+        "id": "64543",
+        "name": "rahul",
+        "email": "rahul@gmail.com",
+        "organization": "product",
+        "number": "9182185399",
+        "gender": "male",
+        "company": "4i apps"
+      },
+      "address": [
+        {
+          "id": "1746207835227",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        },
+        {
+          "id": "1746207840522",
+          "street": "Vinayaka Street",
+          "city": "Rayachoti",
+          "state": "Andhra Pradesh",
+          "zip": "516269"
+        },
+        {
+          "id": "1746207846981",
+          "street": "vellore institute of technology chennai",
+          "city": "chennai",
+          "state": "Andhra Pradesh",
+          "zip": "600127"
+        }
+      ]
+    }
+  ]
+}
