@@ -382,6 +382,27 @@
           "zip": "600127"
         }
       ]
+    },
+    {
+      "id": "5686",
+      "employee": {
+        "id": "1",
+        "name": "Sashank Reddy",
+        "email": "sai@gmail.com",
+        "organization": "product",
+        "number": "1234567890",
+        "gender": "male",
+        "company": "cognizant"
+      },
+      "address": [
+        {
+          "id": "1746247487963",
+          "street": "UKKUNAGARAM",
+          "city": "VISAKHAPATNAM",
+          "state": "Andhra Pradesh",
+          "zip": "530031"
+        }
+      ]
     }
   ]
 }

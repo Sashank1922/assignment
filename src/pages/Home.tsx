@@ -1,31 +1,23 @@
-
-
-import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  Card,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   IconButton,
   MenuItem,
   Select,
-  Typography,
-  InputBase,
-  Paper,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   TextField,
+  Typography,
 } from "@mui/material";
-import { Add, Delete, Edit, Visibility } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
-import axios from "axios";
 import { DataGrid, GridColDef, GridPaginationModel } from "@mui/x-data-grid";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { Delete, Edit, Visibility } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const HomePage = () => {
-  const navigate = useNavigate();
+const Home = () => {
   const [employees, setEmployees] = useState<any[]>([]);
   const [filteredEmployees, setFilteredEmployees] = useState<any[]>([]);
   const [searchText, setSearchText] = useState("");
@@ -44,6 +36,8 @@ const HomePage = () => {
   const [singleDeleteDialogOpen, setSingleDeleteDialogOpen] = useState(false);
   const [employeeToDelete, setEmployeeToDelete] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 0.5, minWidth: 60 },
     { field: "name", headerName: "Name", flex: 1, minWidth: 120 },
@@ -60,15 +54,9 @@ const HomePage = () => {
       minWidth: 180,
       renderCell: (params) => (
         <Box sx={{ display: "flex", gap: 1 }}>
-          <IconButton onClick={() => handleEdit(params.row)}>
-            <Edit />
-          </IconButton>
-          <IconButton onClick={() => handleView(params.row)}>
-            <Visibility />
-          </IconButton>
-          <IconButton color="error" onClick={() => handleDeleteClick(params.row.id)}>
-            <Delete />
-          </IconButton>
+          <IconButton onClick={() => handleEdit(params.row)}><Edit /></IconButton>
+          <IconButton onClick={() => handleView(params.row)}><Visibility /></IconButton>
+          <IconButton color="error" onClick={() => handleDeleteClick(params.row.id)}><Delete /></IconButton>
         </Box>
       ),
     },
@@ -97,7 +85,6 @@ const HomePage = () => {
 
   useEffect(() => {
     let data = [...employees];
-
     if (searchText) {
       const lowercased = searchText.toLowerCase();
       data = data.filter((emp) =>
@@ -129,7 +116,7 @@ const HomePage = () => {
   };
 
   const handleEdit = (row: any) => {
-    setCurrentEdit({ ...row, employee: { ...row } });
+    setCurrentEdit({ ...row });
     setEditDialogOpen(true);
   };
 
@@ -137,7 +124,7 @@ const HomePage = () => {
     if (currentEdit) {
       await axios.put(`http://localhost:3001/employees/${currentEdit.id}`, {
         id: currentEdit.id,
-        employee: { ...currentEdit.employee },
+        employee: { ...currentEdit },
       });
       setEditDialogOpen(false);
       fetchData();
@@ -149,244 +136,163 @@ const HomePage = () => {
   };
 
   const handleDeleteSelected = async () => {
-    try {
-      if (selectedIds.length === 0) {
-        console.error("No employees selected.");
-        return;
-      }
-
-      await Promise.all(
-        selectedIds.map(async (id: string) => {
-          await axios.delete(`http://localhost:3001/employees/${id}`);
-        })
-      );
-
-      fetchData();
-      setDeleteDialogOpen(false);
-    } catch (error) {
-      console.error("Error deleting selected employees:", error);
-    }
+    if (selectedIds.length === 0) return;
+    await Promise.all(
+      selectedIds.map(async (id: string) => {
+        await axios.delete(`http://localhost:3001/employees/${id}`);
+      })
+    );
+    fetchData();
+    setDeleteDialogOpen(false);
   };
 
   const handleClearAll = async () => {
-    try {
-      const response = await axios.get("http://localhost:3001/employees");
-      await Promise.all(
-        response.data.map(async (emp: any) => {
-          await axios.delete(`http://localhost:3001/employees/${emp.id}`);
-        })
-      );
-      fetchData();
-      setClearAllDialogOpen(false);
-    } catch (error) {
-      console.error("Error clearing all data:", error);
-    }
+    const response = await axios.get("http://localhost:3001/employees");
+    await Promise.all(
+      response.data.map(async (emp: any) => {
+        await axios.delete(`http://localhost:3001/employees/${emp.id}`);
+      })
+    );
+    fetchData();
+    setClearAllDialogOpen(false);
   };
 
   const handleCheckboxChange = (ids: any[]) => {
     setSelectedIds(ids);
   };
 
-  const clearFilters = () => {
-    setSearchText("");
-    setOrganizationFilter("");
-  };
-
   return (
-    <Box sx={{ width: "100vw", minHeight: "100vh", backgroundColor: "#f5f5f5", paddingBottom: "60px" }}>
-      <Box sx={{ maxWidth: "1300px", margin: "0 auto", px: 2, py: 3 }}>
-        <Typography variant="h4" fontWeight="bold" mb={4} align="center" color="blue">
-          Employee Details
-        </Typography>
+    <Box sx={{ p: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Employee Records
+      </Typography>
 
-        {/* Search & Filters */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
-          <Box sx={{ position: "relative", flexGrow: 1 }}>
-            <SearchIcon sx={{ position: "absolute", top: 10, left: 10, color: "gray" }} />
-            <InputBase
-              placeholder="Search…"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              sx={{
-                width: "100%",
-                paddingLeft: 5,
-                bgcolor: "white",
-                borderRadius: 1,
-                height: 40,
-              }}
-            />
-          </Box>
-
-          <Select
-            displayEmpty
-            size="small"
-            sx={{ minWidth: 200 }}
-            value={organizationFilter}
-            onChange={(e) => setOrganizationFilter(e.target.value)}
-          >
-            <MenuItem value="">Filter by Organization</MenuItem>
-            {uniqueOrganizations.map((org) => (
-              <MenuItem key={org} value={org}>
-                {org}
-              </MenuItem>
-            ))}
-          </Select>
-
-          <Button variant="contained" color="error" onClick={clearFilters}>
-            Clear Filters
-          </Button>
-
-          <Button variant="outlined" color="error" onClick={() => setClearAllDialogOpen(true)}>
-            Clear All
-          </Button>
-
-          <IconButton color="primary" onClick={() => navigate("/EmployeeForm")}>
-            <Add />
-          </IconButton>
-        </Box>
-
-        {/* Delete Selected */}
-        <Box sx={{ mb: 2, display: "flex", justifyContent: "space-between" }}>
-          <Button
-            variant="contained"
-            color="error"
-            startIcon={<Delete />}
-            onClick={() => setDeleteDialogOpen(true)}
-            disabled={selectedIds.length === 0}
-          >
-            Delete Selected
-          </Button>
-        </Box>
-
-        {/* Table */}
-        {filteredEmployees.length > 0 ? (
-          <Paper sx={{ width: "100%", height: "calc(100vh - 300px)" }}>
-            <DataGrid
-              rows={filteredEmployees.map((emp) => ({
-                ...emp?.employee,
-                id: String(emp?.id),
-              }))}
-              columns={columns}
-              checkboxSelection
-              paginationModel={paginationModel}
-              onPaginationModelChange={setPaginationModel}
-              pageSizeOptions={[5, 10, 15, 20]}
-              onRowSelectionModelChange={(newSelection) => handleCheckboxChange(newSelection)}
-              columnBuffer={columns.length}
-              disableColumnVirtualization
-              disableRowSelectionOnClick
-              sx={{ 
-                border: 0,
-                '& .MuiDataGrid-virtualScroller': {
-                  overflow: 'auto',
-                },
-                '& .MuiDataGrid-columnHeaders': {
-                  backgroundColor: '#1976d2',
-                  color: 'black',
-                },
-                '& .MuiDataGrid-columnHeaderTitle': {
-                  color: 'black',
-                  fontWeight: 'bold',
-                },
-                '& .MuiDataGrid-iconButtonContainer': {
-                  visibility: 'visible',
-                  width: 'auto',
-                },
-                '& .MuiDataGrid-menuIcon': {
-                  visibility: 'visible',
-                },
-                '& .MuiDataGrid-sortIcon': {
-                  opacity: 1,
-                },
-              }}
-            />
-          </Paper>
-        ) : (
-          <Box sx={{ mt: 10, display: "flex", justifyContent: "center" }}>
-            <Card sx={{ p: 5, backgroundColor: "#e3f2fd", boxShadow: 3 }}>
-              <Typography variant="h6">Please add your employee details</Typography>
-            </Card>
-          </Box>
-        )}
+      <Box sx={{ mb: 2, display: "flex", gap: 2 }}>
+        <TextField
+          label="Search"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <Select
+          displayEmpty
+          value={organizationFilter}
+          onChange={(e) => setOrganizationFilter(e.target.value)}
+        >
+          <MenuItem value="">All Organizations</MenuItem>
+          {uniqueOrganizations.map((org) => (
+            <MenuItem key={org} value={org}>
+              {org}
+            </MenuItem>
+          ))}
+        </Select>
+        <Button variant="outlined" color="error" onClick={() => setDeleteDialogOpen(true)}>
+          Delete Selected
+        </Button>
+        <Button variant="outlined" color="error" onClick={() => setClearAllDialogOpen(true)}>
+          Clear All
+        </Button>
       </Box>
 
-      {/* Footer */}
-      <Box sx={{ position: "fixed", bottom: 0, width: "100%", textAlign: "center", py: 1, backgroundColor: "#1976d2", color: "white" }}>
-        © 2025 Employee Management System
-      </Box>
+      <DataGrid
+        rows={filteredEmployees.map((emp) => ({ ...emp.employee }))}
+        columns={columns}
+        checkboxSelection
+        pageSizeOptions={[10, 20, 50]}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
+        onRowSelectionModelChange={handleCheckboxChange}
+        loading={loading}
+        autoHeight
+      />
 
       {/* Edit Dialog */}
-      <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)} PaperProps={{
-    sx: { width: "500px", maxWidth: "90%" },
-  }}>
+      <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)}>
         <DialogTitle>Edit Employee</DialogTitle>
-        <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 1 }}>
-          {currentEdit &&
-            Object.keys(currentEdit.employee).map((key) => (
+        <DialogContent>
+          {currentEdit && (
+            <>
               <TextField
-                key={key}
-                label={key}
-                value={currentEdit.employee[key]}
-                onChange={(e) =>
-                  setCurrentEdit({
-                    ...currentEdit,
-                    employee: { ...currentEdit.employee, [key]: e.target.value },
-                  })
-                }
+                margin="dense"
+                label="Name"
+                fullWidth
+                value={currentEdit.name}
+                onChange={(e) => setCurrentEdit({ ...currentEdit, name: e.target.value })}
               />
-            ))}
+              <TextField
+                margin="dense"
+                label="Email"
+                fullWidth
+                value={currentEdit.email}
+                onChange={(e) => setCurrentEdit({ ...currentEdit, email: e.target.value })}
+              />
+              <TextField
+                margin="dense"
+                label="Organization"
+                fullWidth
+                value={currentEdit.organization}
+                onChange={(e) => setCurrentEdit({ ...currentEdit, organization: e.target.value })}
+              />
+              <TextField
+                margin="dense"
+                label="Number"
+                fullWidth
+                value={currentEdit.number}
+                onChange={(e) => setCurrentEdit({ ...currentEdit, number: e.target.value })}
+              />
+              <TextField
+                margin="dense"
+                label="Gender"
+                fullWidth
+                value={currentEdit.gender}
+                onChange={(e) => setCurrentEdit({ ...currentEdit, gender: e.target.value })}
+              />
+              <TextField
+                margin="dense"
+                label="Company"
+                fullWidth
+                value={currentEdit.company}
+                onChange={(e) => setCurrentEdit({ ...currentEdit, company: e.target.value })}
+              />
+            </>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setEditDialogOpen(false)}>Cancel</Button>
-          <Button onClick={handleEditSave} variant="contained">
-            Save
-          </Button>
+          <Button onClick={handleEditSave}>Save</Button>
         </DialogActions>
       </Dialog>
 
-      {/* Delete Selected Dialog */}
+      {/* Delete Selected Confirmation */}
       <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
-        <DialogTitle>Delete Selected Employees</DialogTitle>
-        <DialogContent>
-          <Typography>Are you sure you want to delete the selected employees?</Typography>
-        </DialogContent>
+        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogContent>Are you sure you want to delete selected employees?</DialogContent>
         <DialogActions>
           <Button onClick={() => setDeleteDialogOpen(false)}>Cancel</Button>
-          <Button onClick={handleDeleteSelected} variant="contained" color="error">
-            Delete
-          </Button>
+          <Button onClick={handleDeleteSelected} color="error">Delete</Button>
         </DialogActions>
       </Dialog>
 
-      {/* Single Delete Dialog */}
-      <Dialog open={singleDeleteDialogOpen} onClose={() => setSingleDeleteDialogOpen(false)}>
-        <DialogTitle>Delete Employee</DialogTitle>
-        <DialogContent>
-          <Typography>Are you sure you want to delete this employee?</Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setSingleDeleteDialogOpen(false)}>Cancel</Button>
-          <Button onClick={handleConfirmDelete} variant="contained" color="error">
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      {/* Clear All Dialog */}
+      {/* Clear All Confirmation */}
       <Dialog open={clearAllDialogOpen} onClose={() => setClearAllDialogOpen(false)}>
-        <DialogTitle>Clear All Employees</DialogTitle>
-        <DialogContent>
-          <Typography>Are you sure you want to clear all employees?</Typography>
-        </DialogContent>
+        <DialogTitle>Confirm Clear All</DialogTitle>
+        <DialogContent>This will delete all employees. Continue?</DialogContent>
         <DialogActions>
           <Button onClick={() => setClearAllDialogOpen(false)}>Cancel</Button>
-          <Button onClick={handleClearAll} variant="contained" color="error">
-            Clear All
-          </Button>
+          <Button onClick={handleClearAll} color="error">Clear All</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Single Delete Confirmation */}
+      <Dialog open={singleDeleteDialogOpen} onClose={() => setSingleDeleteDialogOpen(false)}>
+        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogContent>Are you sure you want to delete this employee?</DialogContent>
+        <DialogActions>
+          <Button onClick={() => setSingleDeleteDialogOpen(false)}>Cancel</Button>
+          <Button onClick={handleConfirmDelete} color="error">Delete</Button>
         </DialogActions>
       </Dialog>
     </Box>
   );
 };
 
-export default HomePage;
+export default Home;

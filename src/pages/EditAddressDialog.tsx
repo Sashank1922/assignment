@@ -4,7 +4,8 @@ import { useFormik } from 'formik';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import axios from 'axios';
-import { Address } from './AddressTable';
+import { Address } from '../types/';
+
 
 interface EditAddressDialogProps {
   open: boolean;
@@ -42,7 +43,8 @@ const EditAddressDialog: React.FC<EditAddressDialogProps> = ({ open, onClose, on
               value={formik.values.name}
               onChange={formik.handleChange}
               error={formik.touched.name && Boolean(formik.errors.name)}
-              helperText={formik.touched.name && formik.errors.name}
+              // helperText={formik.touched.name && formik.errors.name}
+              helperText={formik.touched.name && typeof formik.errors.name === 'string' ? formik.errors.name : ''}
             />
             <TextField
               label="Address"
@@ -50,7 +52,9 @@ const EditAddressDialog: React.FC<EditAddressDialogProps> = ({ open, onClose, on
               value={formik.values.address}
               onChange={formik.handleChange}
               error={formik.touched.address && Boolean(formik.errors.address)}
-              helperText={formik.touched.address && formik.errors.address}
+              // helperText={formik.touched.address && formik.errors.address}
+              helperText={formik.touched.address && typeof formik.errors.address === 'string' ? formik.errors.address : ''}
+
             />
             <TextField
               label="City"
@@ -58,7 +62,9 @@ const EditAddressDialog: React.FC<EditAddressDialogProps> = ({ open, onClose, on
               value={formik.values.city}
               onChange={formik.handleChange}
               error={formik.touched.city && Boolean(formik.errors.city)}
-              helperText={formik.touched.city && formik.errors.city}
+              // helperText={formik.touched.city && formik.errors.city}
+              helperText={formik.touched.city && typeof formik.errors.city === 'string' ? formik.errors.city : ''}
+
             />
           </Stack>
         </DialogContent>

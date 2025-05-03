@@ -1,4 +1,4 @@
-interface EmployeeDetails {
+export interface EmployeeDetails {
   id: string;
   name: string;
   email: string;
@@ -9,7 +9,9 @@ interface EmployeeDetails {
   
 }
 
-interface Address {
+export interface Address {
+  address: any;
+  name: any;
   id: string; // Unique ID for Address
   street: string;
   city: string;
